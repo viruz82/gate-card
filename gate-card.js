@@ -197,7 +197,7 @@ const TRANSLATIONS = {
     edPlate2: '🚗 Kennzeichen (Zeile 2)',
     edCountry: '🌍 Land (Fahne & Kennzeichen)',
     edHouseTheme: '🏠 Haus-Stil',
-    vehicle: 'Fahrzeug', animal: 'Tier', floodlight: 'Scheinwerfer', recording: 'Aufzeichnung', recOn: 'Zeichnet auf', recOff: 'Pausiert', now: 'jetzt', edCarTrim: '🚙 Ausstattung (z. B. FR)', edSideDoor: '🚪 Pforte', sideDoors: { left: 'Links', right: 'Rechts', none: 'Keine' }, on: 'AN', off: 'AUS', floodModes: { off: 'manuell', auto: 'automatisch', schedule: 'Zeitplan' },
+    vehicle: 'Fahrzeug', animal: 'Tier', floodlight: 'Scheinwerfer', recording: 'Aufzeichnung', recOn: 'Zeichnet auf', recOff: 'Pausiert', now: 'jetzt', edCarTrim: '🚙 Ausstattung (z. B. FR)', edSideDoor: '🚪 Pforte', sideDoors: { left: 'Links', right: 'Rechts', none: 'Keine' }, on: 'AN', off: 'AUS', floodModes: { off: 'manuell', auto: 'Auto', schedule: 'Zeitplan' },
     entityVehicle: '🚗 Fahrzeug-Erkennung', entityAnimal: '🐾 Tier-Erkennung', entityFloodlight: '🔦 Kamera-Scheinwerfer', entityFloodlightMode: '🔦 Scheinwerfer-Modus', entityRecording: '⏺ Kamera-Aufzeichnung',
     houseThemes: { beige: 'Beige', dark: 'Anthrazit', white: 'Weiß', brick: 'Klinker' },
     edCarBrand: '🚙 Automarke (Logo)',

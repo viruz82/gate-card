@@ -1093,6 +1093,7 @@ class GateCard extends HTMLElement {
 @container gatecard (max-width: 460px) {
   .ctrl-btn > div{flex-direction:column;gap:1px !important;padding:0 2px !important;}
   .ctrl-btn .bl{font-size:9.5px !important;letter-spacing:0.3px !important;}
+  .f-title{font-size:15px !important;letter-spacing:0.5px !important;}
 }
 .prog-track{width:100%;height:5px;border-radius:3px;
   background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);overflow:hidden;margin-top:4px;}
@@ -1277,7 +1278,7 @@ class GateCard extends HTMLElement {
         <div style="display:flex;align-items:center;gap:4px;margin-bottom:7px;">
           <div style="font-size:22px;line-height:1;filter:drop-shadow(0 0 10px rgba(0,0,0,.8));flex-shrink:0;">🚧</div>
           <div style="min-width:0;overflow:hidden;">
-            <div style="font-family:Rajdhani,sans-serif;font-size:18px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:${tc};line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${cfg.gate_title || t.title}</div>
+            <div class="f-title" style="font-family:Rajdhani,sans-serif;font-size:18px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;color:${tc};line-height:1;text-shadow:0 2px 8px rgba(0,0,0,.8);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${cfg.gate_title || t.title}</div>
             <div style="font-family:monospace;font-size:9px;letter-spacing:0.8px;color:rgba(255,255,255,.85);margin-top:3px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">${cfg.gate_zone || t.zone}</div>
           </div>
         </div>

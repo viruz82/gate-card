@@ -1014,6 +1014,7 @@ class GateCard extends HTMLElement {
 @import url('https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;700&display=swap');
 :host{display:block;}*{box-sizing:border-box;}
 .card{
+  container-type:inline-size;container-name:gatecard;
   background:${bg};
   backdrop-filter:blur(${cfg.backdrop_blur ?? 12}px);-webkit-backdrop-filter:blur(${cfg.backdrop_blur ?? 12}px);
   border-radius:22px;border:1px solid rgba(0,255,255,0.3);
@@ -1085,6 +1086,14 @@ class GateCard extends HTMLElement {
   border:1px solid rgba(255,255,255,.15);background:rgba(0,0,0,.25);
   transition:opacity .4s,background .2s;padding:0;}
 .ctrl-btn:active{filter:brightness(1.3);}
+.ctrl-btn{min-width:0;}
+.ctrl-btn > div{min-width:0;max-width:100%;}
+.ctrl-btn .bl{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;}
+/* narrow cards (phones): icon above label so all four buttons fit */
+@container gatecard (max-width: 460px) {
+  .ctrl-btn > div{flex-direction:column;gap:1px !important;padding:0 2px !important;}
+  .ctrl-btn .bl{font-size:9.5px !important;letter-spacing:0.3px !important;}
+}
 .prog-track{width:100%;height:5px;border-radius:3px;
   background:rgba(255,255,255,.1);border:1px solid rgba(255,255,255,.15);overflow:hidden;margin-top:4px;}
 .prog-fill{height:100%;border-radius:3px;box-shadow:0 0 6px rgba(0,255,200,.6);transition:width .5s linear;}

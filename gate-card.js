@@ -14,6 +14,8 @@
  * ─── What's new in v1.1.0 ────────────────────────────────────────────────────
  *  🏠 gate_style: 'shutter'  — Rolling shutter / garage door diagram
  *  🚗 license_plate_line1 / license_plate_line2
+ *  🌍 country: flag on the pole + licence plate band (vn, de, at, ch, nl, fr, it, pl, se, hu, cz, gb)
+ *  🚙 car_brand: rear logo (toyota, seat, vw, none) · car_model: rear badge text · car_color: body colour
  *  🏠 home_name
  *  ⏱  no_sensor + travel_time_sec
  *  🌐 6 new languages (total 10)
@@ -66,6 +68,10 @@ const TRANSLATIONS = {
     edGateZone: '📍 Zone / mô tả phụ',
     edPlate1: '🚗 Biển số xe (dòng 1)',
     edPlate2: '🚗 Biển số xe (dòng 2)',
+    edCountry: '🌍 Quốc gia (cờ & biển số)',
+    edCarBrand: '🚙 Hãng xe (logo)',
+    edCarModel: '🚙 Dòng xe (chữ đuôi xe)',
+    edCarColor: '🎨 Màu xe',
     edSensorPos: '📡 Cảm biến cổng',
     edHomeName: '🏠 Tên My Home',
     edNoSensor: '⏱ Không có cảm biến vị trí',
@@ -119,6 +125,10 @@ const TRANSLATIONS = {
     edGateZone: '📍 Zone / subtitle',
     edPlate1: '🚗 License plate (line 1)',
     edPlate2: '🚗 License plate (line 2)',
+    edCountry: '🌍 Country (flag & plate)',
+    edCarBrand: '🚙 Car brand (logo)',
+    edCarModel: '🚙 Car model (rear badge)',
+    edCarColor: '🎨 Car colour',
     edSensorPos: '📡 Gate sensor',
     edHomeName: '🏠 My Home name',
     edNoSensor: '⏱ No position sensor',
@@ -172,6 +182,10 @@ const TRANSLATIONS = {
     edGateZone: '📍 Zone / Untertitel',
     edPlate1: '🚗 Kennzeichen (Zeile 1)',
     edPlate2: '🚗 Kennzeichen (Zeile 2)',
+    edCountry: '🌍 Land (Fahne & Kennzeichen)',
+    edCarBrand: '🚙 Automarke (Logo)',
+    edCarModel: '🚙 Modell (Schriftzug)',
+    edCarColor: '🎨 Autofarbe',
     edSensorPos: '📡 Tor-Sensor',
     edHomeName: '🏠 My Home Name',
     edNoSensor: '⏱ Kein Positionssensor',
@@ -225,6 +239,10 @@ const TRANSLATIONS = {
     edGateZone: '📍 Zone / sous-titre',
     edPlate1: '🚗 Plaque (ligne 1)',
     edPlate2: '🚗 Plaque (ligne 2)',
+    edCountry: '🌍 Pays (drapeau & plaque)',
+    edCarBrand: '🚙 Marque (logo)',
+    edCarModel: '🚙 Modèle (badge arrière)',
+    edCarColor: '🎨 Couleur de la voiture',
     edSensorPos: '📡 Capteur de portail',
     edHomeName: '🏠 Nom My Home',
     edNoSensor: '⏱ Pas de capteur de position',
@@ -278,6 +296,10 @@ const TRANSLATIONS = {
     edGateZone: '📍 Zone / ondertitel',
     edPlate1: '🚗 Kenteken (regel 1)',
     edPlate2: '🚗 Kenteken (regel 2)',
+    edCountry: '🌍 Land (vlag & kenteken)',
+    edCarBrand: '🚙 Automerk (logo)',
+    edCarModel: '🚙 Model (achterlogo)',
+    edCarColor: '🎨 Autokleur',
     edSensorPos: '📡 Poortsensor',
     edHomeName: '🏠 My Home naam',
     edNoSensor: '⏱ Geen positiesensor',
@@ -331,6 +353,10 @@ const TRANSLATIONS = {
     edGateZone: '📍 Strefa / podtytuł',
     edPlate1: '🚗 Tablica rejestracyjna (linia 1)',
     edPlate2: '🚗 Tablica rejestracyjna (linia 2)',
+    edCountry: '🌍 Kraj (flaga i tablica)',
+    edCarBrand: '🚙 Marka (logo)',
+    edCarModel: '🚙 Model (napis z tyłu)',
+    edCarColor: '🎨 Kolor auta',
     edSensorPos: '📡 Czujnik bramy',
     edHomeName: '🏠 Nazwa My Home',
     edNoSensor: '⏱ Brak czujnika pozycji',
@@ -384,6 +410,10 @@ const TRANSLATIONS = {
     edGateZone: '📍 Zon / underrubrik',
     edPlate1: '🚗 Registreringsskylt (rad 1)',
     edPlate2: '🚗 Registreringsskylt (rad 2)',
+    edCountry: '🌍 Land (flagga & skylt)',
+    edCarBrand: '🚙 Bilmärke (logotyp)',
+    edCarModel: '🚙 Modell (emblem bak)',
+    edCarColor: '🎨 Bilfärg',
     edSensorPos: '📡 Grindgivare',
     edHomeName: '🏠 My Home namn',
     edNoSensor: '⏱ Ingen positionssensor',
@@ -437,6 +467,10 @@ const TRANSLATIONS = {
     edGateZone: '📍 Zóna / alcím',
     edPlate1: '🚗 Rendszám (1. sor)',
     edPlate2: '🚗 Rendszám (2. sor)',
+    edCountry: '🌍 Ország (zászló és rendszám)',
+    edCarBrand: '🚙 Autómárka (logó)',
+    edCarModel: '🚙 Modell (hátsó felirat)',
+    edCarColor: '🎨 Autó színe',
     edSensorPos: '📡 Kapuérzékelő',
     edHomeName: '🏠 My Home neve',
     edNoSensor: '⏱ Nincs pozícióérzékelő',
@@ -490,6 +524,10 @@ const TRANSLATIONS = {
     edGateZone: '📍 Zóna / podnadpis',
     edPlate1: '🚗 Registrační značka (řádek 1)',
     edPlate2: '🚗 Registrační značka (řádek 2)',
+    edCountry: '🌍 Země (vlajka a značka)',
+    edCarBrand: '🚙 Značka auta (logo)',
+    edCarModel: '🚙 Model (nápis vzadu)',
+    edCarColor: '🎨 Barva auta',
     edSensorPos: '📡 Snímač brány',
     edHomeName: '🏠 Název My Home',
     edNoSensor: '⏱ Bez snímače polohy',
@@ -543,6 +581,10 @@ const TRANSLATIONS = {
     edGateZone: '📍 Zona / sottotitolo',
     edPlate1: '🚗 Targa (riga 1)',
     edPlate2: '🚗 Targa (riga 2)',
+    edCountry: '🌍 Paese (bandiera e targa)',
+    edCarBrand: '🚙 Marca auto (logo)',
+    edCarModel: '🚙 Modello (scritta posteriore)',
+    edCarColor: '🎨 Colore auto',
     edSensorPos: '📡 Sensore cancello',
     edHomeName: '🏠 Nome My Home',
     edNoSensor: '⏱ Nessun sensore posizione',
@@ -616,7 +658,105 @@ const DEFAULT_CONFIG = {
   travel_time_sec: 20,
   use_lock: false,
   backdrop_blur: 12,
+  country: 'vn',          // flag + licence plate band (shutter style)
+  car_brand: 'toyota',    // rear logo: toyota | seat | vw | none
+  car_model: 'VIOS',      // rear badge text ('' = none)
+  car_color: '#c8bc98',   // car body colour
 };
+
+// ─── Country flag, licence plate & car (shutter style) ───────────────────────
+const COUNTRIES = {
+  vn: 'Việt Nam', de: 'Deutschland', at: 'Österreich', ch: 'Schweiz', nl: 'Nederland', fr: 'France',
+  it: 'Italia', pl: 'Polska', se: 'Sverige', hu: 'Magyarország', cz: 'Česko', gb: 'United Kingdom',
+};
+const CAR_BRANDS = { toyota: 'Toyota', seat: 'SEAT', vw: 'Volkswagen', none: '—' };
+
+// Flag inside the box x,y,w,h
+function flagSvg(c, x, y, w, h) {
+  const hz = (a, b, d) => `<rect x="${x}" y="${y}" width="${w}" height="${h / 3}" fill="${a}"/><rect x="${x}" y="${y + h / 3}" width="${w}" height="${h / 3}" fill="${b}"/><rect x="${x}" y="${y + 2 * h / 3}" width="${w}" height="${h / 3}" fill="${d}"/>`;
+  const vt = (a, b, d) => `<rect x="${x}" y="${y}" width="${w / 3}" height="${h}" fill="${a}"/><rect x="${x + w / 3}" y="${y}" width="${w / 3}" height="${h}" fill="${b}"/><rect x="${x + 2 * w / 3}" y="${y}" width="${w / 3}" height="${h}" fill="${d}"/>`;
+  switch (c) {
+    case 'de': return hz('#000000', '#dd0000', '#ffce00');
+    case 'at': return hz('#ed2939', '#ffffff', '#ed2939');
+    case 'nl': return hz('#ae1c28', '#ffffff', '#21468b');
+    case 'hu': return hz('#ce2939', '#ffffff', '#477050');
+    case 'fr': return vt('#002395', '#ffffff', '#ed2939');
+    case 'it': return vt('#009246', '#ffffff', '#ce2b37');
+    case 'pl': return `<rect x="${x}" y="${y}" width="${w}" height="${h / 2}" fill="#ffffff"/><rect x="${x}" y="${y + h / 2}" width="${w}" height="${h / 2}" fill="#dc143c"/>`;
+    case 'cz': return `<rect x="${x}" y="${y}" width="${w}" height="${h / 2}" fill="#ffffff"/><rect x="${x}" y="${y + h / 2}" width="${w}" height="${h / 2}" fill="#d7141a"/><polygon points="${x},${y} ${x + w / 2},${y + h / 2} ${x},${y + h}" fill="#11457e"/>`;
+    case 'se': return `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#006aa7"/><rect x="${x + w * 5 / 16}" y="${y}" width="${w / 8}" height="${h}" fill="#fecc00"/><rect x="${x}" y="${y + h * 2 / 5}" width="${w}" height="${h / 5}" fill="#fecc00"/>`;
+    case 'ch': return `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#da291c"/><rect x="${x + w / 2 - 2.5}" y="${y + h / 2 - 8}" width="5" height="16" fill="#ffffff"/><rect x="${x + w / 2 - 8}" y="${y + h / 2 - 2.5}" width="16" height="5" fill="#ffffff"/>`;
+    case 'gb': return `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="#012169"/>
+      <path d="M${x},${y}L${x + w},${y + h}M${x + w},${y}L${x},${y + h}" stroke="#ffffff" stroke-width="5"/>
+      <path d="M${x},${y}L${x + w},${y + h}M${x + w},${y}L${x},${y + h}" stroke="#c8102e" stroke-width="1.6"/>
+      <path d="M${x + w / 2},${y}V${y + h}M${x},${y + h / 2}H${x + w}" stroke="#ffffff" stroke-width="7"/>
+      <path d="M${x + w / 2},${y}V${y + h}M${x},${y + h / 2}H${x + w}" stroke="#c8102e" stroke-width="4"/>`;
+    default: // vn
+      return `<rect x="${x}" y="${y}" width="${w}" height="${h}" rx="1.5" fill="#da251d"/><polygon points="54,101 56,106.5 62,106.5 57.5,109.5 59.2,115 54,112 48.8,115 50.5,109.5 46,106.5 52,106.5" fill="#ffff00"/>`;
+  }
+}
+
+// Licence plate (rear view) incl. country band and text
+function plateSvg(c, l1, l2) {
+  const eu = { de: 'D', at: 'A', nl: 'NL', fr: 'F', it: 'I', pl: 'PL', se: 'S', hu: 'H', cz: 'CZ' };
+  const yellow = c === 'nl' || c === 'gb';
+  const bg = yellow ? '#f7d117' : '#f0f0f0';
+  const border = c === 'vn' ? '#2233bb' : '#222222';
+  let band = '';
+  if (c === 'vn') {
+    band = `<rect x="236" y="317" width="15" height="24" rx="2" fill="#cc0000"/>
+    <text x="243.5" y="324" font-size="5" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle">VN</text>
+    <text x="243.5" y="335" font-size="8" fill="#FFD700" font-family="Arial" text-anchor="middle">★</text>`;
+  } else if (eu[c]) {
+    const stars = Array.from({ length: 12 }, (_, i) => `<circle cx="${(243.5 + 3.6 * Math.cos(i * Math.PI / 6)).toFixed(2)}" cy="${(323.5 + 3.6 * Math.sin(i * Math.PI / 6)).toFixed(2)}" r="0.55" fill="#FFD700"/>`).join('');
+    band = `<rect x="236" y="317" width="13" height="24" rx="2" fill="#003399"/>${stars}
+    <text x="242.5" y="337.5" font-size="${eu[c].length > 1 ? 5.5 : 7}" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle">${eu[c]}</text>`;
+  } else if (c === 'gb') {
+    band = `<rect x="236" y="317" width="13" height="24" rx="2" fill="#003399"/>
+    <text x="242.5" y="332" font-size="5.5" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle">UK</text>`;
+  }
+  // text centred in the remaining plate area (no band: whole plate)
+  const cx = band ? (c === 'vn' ? 279 : 278) : 271;
+  const font = c === 'vn' ? 'Arial Black' : 'Arial';
+  const text = (l2 ? `
+    <text x="${cx}" y="328" text-anchor="middle" font-size="9.5" fill="#111" font-family="${font}" font-weight="900" letter-spacing="1">${l1}</text>
+    <text x="${cx}" y="338" text-anchor="middle" font-size="9.5" fill="#111" font-family="${font}" font-weight="900" letter-spacing="0.5">${l2}</text>` : `
+    <text x="${cx}" y="333" text-anchor="middle" font-size="${Math.min(10.5, (band ? 50 : 62) / (String(l1).length * 0.66)).toFixed(1)}" fill="#111" font-family="${font}" font-weight="700" letter-spacing="0.3">${l1}</text>`);
+  return `<rect x="233" y="314" width="76" height="30" rx="3" fill="#181820" stroke="#777" stroke-width="0.8"/>
+    <rect x="236" y="317" width="70" height="24" rx="2" fill="${bg}" stroke="${border}" stroke-width="${c === 'vn' ? 1.4 : 0.9}"/>
+    ${band}${text}`;
+}
+
+// Rear logo centred on cx,cy
+function carLogoSvg(brand, cx, cy) {
+  const chrome = '#c8c8cc';
+  switch (brand) {
+    case 'none': return '';
+    case 'seat': // stylised angular "S"
+      return `<circle cx="${cx}" cy="${cy}" r="12" fill="#1a1a20" stroke="${chrome}" stroke-width="1"/>
+      <path d="M${cx + 6.5},${cy - 6.5} L${cx - 4.5},${cy - 6.5} L${cx - 6.5},${cy - 1.2} L${cx + 6.5},${cy + 1.2} L${cx + 4.5},${cy + 6.5} L${cx - 6.5},${cy + 6.5}"
+        fill="none" stroke="${chrome}" stroke-width="2.6" stroke-linejoin="miter" stroke-linecap="square"/>`;
+    case 'vw':
+      return `<circle cx="${cx}" cy="${cy}" r="12" fill="#1a3a70" stroke="${chrome}" stroke-width="1.6"/>
+      <path d="M${cx - 5},${cy - 8} L${cx},${cy - 0.5} L${cx + 5},${cy - 8}" fill="none" stroke="${chrome}" stroke-width="1.6" stroke-linejoin="round"/>
+      <path d="M${cx - 9},${cy - 3} L${cx - 4.5},${cy + 8} L${cx},${cy + 1.5} L${cx + 4.5},${cy + 8} L${cx + 9},${cy - 3}" fill="none" stroke="${chrome}" stroke-width="1.6" stroke-linejoin="round"/>`;
+    default: // toyota: interlocked 3-oval design
+      return `<circle cx="${cx}" cy="${cy}" r="14" fill="#1a1a20" stroke="#c0b898" stroke-width="1.5"/>
+      <ellipse cx="${cx}" cy="${cy}" rx="11" ry="7.5" fill="none" stroke="#c0b898" stroke-width="1.6"/>
+      <ellipse cx="${cx - 3}" cy="${cy}" rx="4.8" ry="7" fill="none" stroke="#c0b898" stroke-width="1.6"/>
+      <ellipse cx="${cx + 3}" cy="${cy}" rx="4.8" ry="7" fill="none" stroke="#c0b898" stroke-width="1.6"/>
+      <line x1="${cx - 11}" y1="${cy - 7}" x2="${cx + 11}" y2="${cy - 7}" stroke="#c0b898" stroke-width="1.8" stroke-linecap="round"/>`;
+  }
+}
+
+// Lighten (f > 0) or darken (f < 0) a #rrggbb colour
+function shadeHex(hex, f) {
+  const m = /^#?([0-9a-f]{6})$/i.exec(hex || '');
+  if (!m) return hex;
+  const n = parseInt(m[1], 16);
+  const ch = (v) => Math.max(0, Math.min(255, Math.round(f >= 0 ? v + (255 - v) * f : v * (1 + f))));
+  return '#' + [(n >> 16) & 255, (n >> 8) & 255, n & 255].map((v) => ch(v).toString(16).padStart(2, '0')).join('');
+}
 
 // ─── Helpers ──────────────────────────────────────────────────────────────────
 function sv(hass, e) { return hass?.states?.[e]?.state || ''; }
@@ -1315,10 +1455,10 @@ ${lightOn?`<circle cx="459" cy="18" r="18" fill="rgba(255,220,80,0.18)"/><circle
     <stop offset="100%" stop-color="#ffaa00" stop-opacity="0"/>
   </radialGradient>
   <linearGradient id="haCarBody" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#d4c9a8"/><stop offset="50%" stop-color="#c8bc98"/><stop offset="100%" stop-color="#a89878"/>
+    <stop offset="0%" stop-color="${shadeHex(this._config.car_color || '#c8bc98', 0.12)}"/><stop offset="50%" stop-color="${this._config.car_color || '#c8bc98'}"/><stop offset="100%" stop-color="${shadeHex(this._config.car_color || '#c8bc98', -0.16)}"/>
   </linearGradient>
   <linearGradient id="haCarRoof" x1="0" y1="0" x2="0" y2="1">
-    <stop offset="0%" stop-color="#b8ae90"/><stop offset="100%" stop-color="#9a9070"/>
+    <stop offset="0%" stop-color="${shadeHex(this._config.car_color || '#c8bc98', -0.08)}"/><stop offset="100%" stop-color="${shadeHex(this._config.car_color || '#c8bc98', -0.23)}"/>
   </linearGradient>
   <linearGradient id="haRearWin" x1="0" y1="0" x2="0" y2="1">
     <stop offset="0%" stop-color="#1a2838"/><stop offset="100%" stop-color="#0a1420"/>
@@ -1329,8 +1469,7 @@ ${lightOn?`<circle cx="459" cy="18" r="18" fill="rgba(255,220,80,0.18)"/><circle
 <rect x="26" y="282" width="12" height="16" rx="2" fill="#8a9098"/>
 <rect x="29" y="96" width="4" height="188" fill="#c8d0d8"/>
 <circle cx="31" cy="94" r="4" fill="#d8c060"/>
-<rect x="33" y="96" width="42" height="25" rx="1.5" fill="#da251d"/>
-<polygon points="54,101 56,106.5 62,106.5 57.5,109.5 59.2,115 54,112 48.8,115 50.5,109.5 46,106.5 52,106.5" fill="#ffff00"/>
+${flagSvg(this._config.country || 'vn', 33, 96, 42, 25)}
 <!-- WALLS -->
 <rect x="85" y="248" width="490" height="124" fill="#cfc4ae"/>
 <rect x="85" y="162" width="490" height="90" fill="#d4c9b4"/>
@@ -1415,7 +1554,7 @@ ${motorDot}${arrowUp}${arrowDown}
     <!-- Body highlight -->
     <path d="M176,264 Q175,288 175,318 L367,318 Q367,288 367,264 Z" fill="rgba(255,255,255,0.07)"/>
     <!-- Boot / trunk lid -->
-    <path d="M178,250 Q180,241 271,235 Q362,241 364,250 L366,268 Q330,263 271,261 Q212,263 176,268 Z" fill="url(#haCarBody)" stroke="#b0a888" stroke-width="0.5"/>
+    <path d="M178,250 Q180,241 271,235 Q362,241 364,250 L366,268 Q330,263 271,261 Q212,263 176,268 Z" fill="url(#haCarBody)" stroke="${shadeHex(this._config.car_color || '#c8bc98', -0.1)}" stroke-width="0.5"/>
     <!-- Trunk highlight -->
     <path d="M194,247 Q240,240 271,238 Q302,240 348,247" fill="none" stroke="rgba(255,255,255,0.22)" stroke-width="1.8"/>
     <!-- Rear window -->
@@ -1423,7 +1562,7 @@ ${motorDot}${arrowUp}${arrowDown}
     <!-- Rear window wiper -->
     <line x1="224" y1="248" x2="318" y2="242" stroke="#444" stroke-width="1.5" stroke-linecap="round"/>
     <!-- Roof spoiler strip -->
-    <path d="M210,250 Q271,241 332,250 L329,246 Q271,237 213,246 Z" fill="#a09060" stroke="#887848" stroke-width="0.5"/>
+    <path d="M210,250 Q271,241 332,250 L329,246 Q271,237 213,246 Z" fill="${shadeHex(this._config.car_color || '#c8bc98', -0.3)}" stroke="${shadeHex(this._config.car_color || '#c8bc98', -0.4)}" stroke-width="0.5"/>
     <!-- Roof -->
     <path d="M174,250 L196,250 Q215,224 271,218 Q327,224 346,250 L368,250 L365,262 Q330,255 271,253 Q212,255 177,262 Z" fill="url(#haCarRoof)"/>
     <!-- LEFT tail light full assembly -->
@@ -1449,26 +1588,14 @@ ${motorDot}${arrowUp}${arrowDown}
     <rect x="180" y="295" width="182" height="3" rx="1" fill="#ff4444" opacity="0.6"/>
     <!-- Body crease line -->
     <rect x="180" y="262" width="182" height="2.5" rx="1" fill="#c8c4a8" opacity="0.65"/>
-    <!-- TOYOTA LOGO — correct interlocked 3-oval design -->
-    <circle cx="271" cy="272" r="14" fill="#1a1a20" stroke="#c0b898" stroke-width="1.5"/>
-    <!-- outer horizontal big oval -->
-    <ellipse cx="271" cy="272" rx="11" ry="7.5" fill="none" stroke="#c0b898" stroke-width="1.6"/>
-    <!-- left inner vertical oval -->
-    <ellipse cx="268" cy="272" rx="4.8" ry="7" fill="none" stroke="#c0b898" stroke-width="1.6"/>
-    <!-- right inner vertical oval -->
-    <ellipse cx="274" cy="272" rx="4.8" ry="7" fill="none" stroke="#c0b898" stroke-width="1.6"/>
-    <!-- center horizontal line (crossbar of T) -->
-    <line x1="260" y1="265" x2="282" y2="265" stroke="#c0b898" stroke-width="1.8" stroke-linecap="round"/>
-    <!-- VIOS badge -->
-    <text x="220" y="275" font-size="10.5" fill="#d8d8d8" font-family="Arial" font-weight="bold" letter-spacing="2" text-anchor="end" stroke="#666" stroke-width="0.6" paint-order="stroke">VIOS</text>
-    <!-- LICENSE PLATE -->
-    <rect x="233" y="314" width="76" height="30" rx="3" fill="#181820" stroke="#777" stroke-width="0.8"/>
-    <rect x="236" y="317" width="70" height="24" rx="2" fill="#f0f0f0" stroke="#2233bb" stroke-width="1.4"/>
-    <rect x="236" y="317" width="15" height="24" rx="2" fill="#cc0000"/>
-    <text x="243.5" y="324" font-size="5" fill="white" font-family="Arial" font-weight="bold" text-anchor="middle">VN</text>
-    <text x="243.5" y="335" font-size="8" fill="#FFD700" font-family="Arial" text-anchor="middle">★</text>
-    <text x="279" y="328" text-anchor="middle" font-size="9.5" fill="#111" font-family="Arial Black" font-weight="900" letter-spacing="1">${this._config.plate_line1||'99A'}</text>
-    <text x="279" y="338" text-anchor="middle" font-size="9.5" fill="#111" font-family="Arial Black" font-weight="900" letter-spacing="0.5">${this._config.plate_line2||'873.76'}</text>
+    <!-- REAR LOGO (car_brand) -->
+    ${carLogoSvg(this._config.car_brand || 'toyota', 271, 272)}
+    <!-- MODEL BADGE (car_model) -->
+    ${(() => { const m = String(this._config.car_model ?? 'VIOS'); if (!m) return '';
+      const fs = m.length > 5 ? Math.max(6.5, 10.5 * 5 / m.length) : 10.5;  // long names get smaller to stay on the boot lid
+      return `<text x="222" y="275" font-size="${fs.toFixed(1)}" fill="#d8d8d8" font-family="Arial" font-weight="bold" letter-spacing="${m.length > 5 ? 1 : 2}" text-anchor="end" stroke="#666" stroke-width="0.6" paint-order="stroke">${m}</text>`; })()}
+    <!-- LICENSE PLATE (country) -->
+    ${(() => { const c = this._config.country || 'vn'; return plateSvg(c, this._config.plate_line1 || (c === 'vn' ? '99A' : ''), this._config.plate_line2 || (c === 'vn' ? '873.76' : '')); })()}
     <circle cx="239" cy="319" r="1.2" fill="#aaa"/>
     <circle cx="304" cy="319" r="1.2" fill="#aaa"/>
     <circle cx="239" cy="339" r="1.2" fill="#aaa"/>
@@ -2232,7 +2359,28 @@ class GateCardEditor extends HTMLElement {
       <div class="row">
         <label>${t.edPlate2}</label>
         <input class="txt-inp" type="text" id="inp-plate-line2"
-          placeholder="873.76" maxlength="10" value="${cfg.plate_line2||'873.76'}"/>
+          placeholder="873.76" maxlength="10" value="${cfg.plate_line2||''}"/>
+      </div>
+      <div class="row">
+        <label>${t.edCountry||'🌍 Country'}</label>
+        <select class="txt-inp" id="inp-country">
+          ${Object.entries(COUNTRIES).map(([k, n]) => `<option value="${k}" ${(cfg.country||'vn')===k?'selected':''}>${n}</option>`).join('')}
+        </select>
+      </div>
+      <div class="row">
+        <label>${t.edCarBrand||'🚙 Car brand'}</label>
+        <select class="txt-inp" id="inp-car-brand">
+          ${Object.entries(CAR_BRANDS).map(([k, n]) => `<option value="${k}" ${(cfg.car_brand||'toyota')===k?'selected':''}>${n}</option>`).join('')}
+        </select>
+      </div>
+      <div class="row">
+        <label>${t.edCarModel||'🚙 Car model'}</label>
+        <input class="txt-inp" type="text" id="inp-car-model"
+          placeholder="VIOS" maxlength="14" value="${cfg.car_model ?? 'VIOS'}"/>
+      </div>
+      <div class="row">
+        <label>${t.edCarColor||'🎨 Car colour'}</label>
+        <input type="color" id="inp-car-color" value="${cfg.car_color||'#c8bc98'}" style="width:48px;height:32px;border:none;background:none;cursor:pointer;"/>
       </div>
     </div>
   </div>
@@ -2525,6 +2673,18 @@ class GateCardEditor extends HTMLElement {
     const plate2Inp = sr.getElementById('inp-plate-line2');
     wireTextInput(plate1Inp, 'plate_line1');
     wireTextInput(plate2Inp, 'plate_line2');
+    wireTextInput(sr.getElementById('inp-car-model'), 'car_model');
+
+    // country / car brand / car colour
+    [['inp-country', 'country'], ['inp-car-brand', 'car_brand'], ['inp-car-color', 'car_color']].forEach(([id, key]) => {
+      const el = sr.getElementById(id);
+      if (!el) return;
+      el.addEventListener('change', () => {
+        this._config = { ...this._config, [key]: el.value };
+        this._fire();
+        this._render();
+      });
+    });
 
     // no-sensor toggle
     const noSensorToggle = sr.getElementById('toggle-no-sensor');

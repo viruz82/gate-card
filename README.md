@@ -298,8 +298,8 @@ gate_style: shutter
 gate_title: Garage
 gate_zone: ZONE-A · GARAGE CONTROL
 home_name: MY HOME
-license_plate_line1: 99A
-license_plate_line2: 873.76
+plate_line1: 99A
+plate_line2: 873.76
 no_sensor: false
 travel_time_sec: 20
 
@@ -385,7 +385,7 @@ entity_flipped: input_boolean.main_gate_flipped
 
 ### v1.1.0
 - 🏠 New `gate_style: shutter` — rolling shutter garage diagram
-- 🚗 Customisable license plate (`license_plate_line1` / `license_plate_line2`)
+- 🚗 Customisable license plate (`plate_line1` / `plate_line2`)
 - 🏠 Custom home name (`home_name`)
 - ⏱️ No-sensor timer mode (`no_sensor` + `travel_time_sec`)
 - 🌐 6 new languages — 🇫🇷 🇳🇱 🇵🇱 🇸🇪 🇭🇺 🇨🇿 (10 total) with real flag images

@@ -13,7 +13,7 @@
  *
  * ─── What's new in v1.1.0 ────────────────────────────────────────────────────
  *  🏠 gate_style: 'shutter'  — Rolling shutter / garage door diagram
- *  🚗 license_plate_line1 / license_plate_line2
+ *  🚗 plate_line1 / plate_line2
  *  🌍 country: flag on the pole + licence plate band (vn, de, at, ch, nl, fr, it, pl, se, hu, cz, gb)
  *  🚙 car_brand: rear logo (toyota, seat, vw, none) · car_model: rear badge text · car_trim: trim badge on the right (e.g. FR)
  *     car_color: body colour

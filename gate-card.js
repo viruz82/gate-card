@@ -15,9 +15,10 @@
  *  🏠 gate_style: 'shutter'  — Rolling shutter / garage door diagram
  *  🚗 license_plate_line1 / license_plate_line2
  *  🌍 country: flag on the pole + licence plate band (vn, de, at, ch, nl, fr, it, pl, se, hu, cz, gb)
- *  🚙 car_brand: rear logo (toyota, seat, vw, none) · car_model: rear badge text · car_color: body colour
+ *  🚙 car_brand: rear logo (toyota, seat, vw, none) · car_model: rear badge text · car_trim: trim badge on the right (e.g. FR)
+ *     car_color: body colour
  *  🏠 house_theme: garage house look (beige, dark, white, brick – brick has a flat roof and an arched gate)
- *  🚪 side_door: pedestrian door left or right of the garage door (default right)
+ *  🚪 side_door: pedestrian door right (default), left or none (garage door centred)
  *  📷 camera extras: entity_vehicle, entity_animal, entity_floodlight, entity_floodlight_mode, entity_recording –
  *     tap the motion/person bar to open a drawer with them
  *  🏠 home_name
@@ -74,7 +75,7 @@ const TRANSLATIONS = {
     edPlate2: '🚗 Biển số xe (dòng 2)',
     edCountry: '🌍 Quốc gia (cờ & biển số)',
     edHouseTheme: '🏠 Kiểu nhà',
-    vehicle: 'Xe', animal: 'Động vật', floodlight: 'Đèn pha', recording: 'Ghi hình', recOn: 'Đang ghi', recOff: 'Tạm dừng', now: 'bây giờ', edSideDoor: '🚪 Cửa phụ', sideDoors: { left: 'Trái', right: 'Phải' }, on: 'BẬT', off: 'TẮT', floodModes: { off: 'tắt', auto: 'tự động', schedule: 'lịch' },
+    vehicle: 'Xe', animal: 'Động vật', floodlight: 'Đèn pha', recording: 'Ghi hình', recOn: 'Đang ghi', recOff: 'Tạm dừng', now: 'bây giờ', edCarTrim: '🚙 Phiên bản (vd. FR)', edSideDoor: '🚪 Cửa phụ', sideDoors: { left: 'Trái', right: 'Phải', none: 'Không' }, on: 'BẬT', off: 'TẮT', floodModes: { off: 'tắt', auto: 'tự động', schedule: 'lịch' },
     entityVehicle: '🚗 Xe (AI)', entityAnimal: '🐾 Động vật (AI)', entityFloodlight: '🔦 Đèn pha camera', entityFloodlightMode: '🔦 Chế độ đèn pha', entityRecording: '⏺ Ghi hình camera',
     houseThemes: { beige: 'Be', dark: 'Tối', white: 'Trắng', brick: 'Gạch' },
     edCarBrand: '🚙 Hãng xe (logo)',
@@ -135,7 +136,7 @@ const TRANSLATIONS = {
     edPlate2: '🚗 License plate (line 2)',
     edCountry: '🌍 Country (flag & plate)',
     edHouseTheme: '🏠 House style',
-    vehicle: 'Vehicle', animal: 'Animal', floodlight: 'Floodlight', recording: 'Recording', recOn: 'Recording', recOff: 'Paused', now: 'now', edSideDoor: '🚪 Side door', sideDoors: { left: 'Left', right: 'Right' }, on: 'ON', off: 'OFF', floodModes: { off: 'off', auto: 'auto', schedule: 'schedule' },
+    vehicle: 'Vehicle', animal: 'Animal', floodlight: 'Floodlight', recording: 'Recording', recOn: 'Recording', recOff: 'Paused', now: 'now', edCarTrim: '🚙 Trim badge (e.g. FR)', edSideDoor: '🚪 Side door', sideDoors: { left: 'Left', right: 'Right', none: 'None' }, on: 'ON', off: 'OFF', floodModes: { off: 'off', auto: 'auto', schedule: 'schedule' },
     entityVehicle: '🚗 Vehicle detection', entityAnimal: '🐾 Animal detection', entityFloodlight: '🔦 Camera floodlight', entityFloodlightMode: '🔦 Floodlight mode', entityRecording: '⏺ Camera recording',
     houseThemes: { beige: 'Beige', dark: 'Dark', white: 'White', brick: 'Brick' },
     edCarBrand: '🚙 Car brand (logo)',
@@ -196,7 +197,7 @@ const TRANSLATIONS = {
     edPlate2: '🚗 Kennzeichen (Zeile 2)',
     edCountry: '🌍 Land (Fahne & Kennzeichen)',
     edHouseTheme: '🏠 Haus-Stil',
-    vehicle: 'Fahrzeug', animal: 'Tier', floodlight: 'Scheinwerfer', recording: 'Aufzeichnung', recOn: 'Zeichnet auf', recOff: 'Pausiert', now: 'jetzt', edSideDoor: '🚪 Pforte', sideDoors: { left: 'Links', right: 'Rechts' }, on: 'AN', off: 'AUS', floodModes: { off: 'manuell', auto: 'automatisch', schedule: 'Zeitplan' },
+    vehicle: 'Fahrzeug', animal: 'Tier', floodlight: 'Scheinwerfer', recording: 'Aufzeichnung', recOn: 'Zeichnet auf', recOff: 'Pausiert', now: 'jetzt', edCarTrim: '🚙 Ausstattung (z. B. FR)', edSideDoor: '🚪 Pforte', sideDoors: { left: 'Links', right: 'Rechts', none: 'Keine' }, on: 'AN', off: 'AUS', floodModes: { off: 'manuell', auto: 'automatisch', schedule: 'Zeitplan' },
     entityVehicle: '🚗 Fahrzeug-Erkennung', entityAnimal: '🐾 Tier-Erkennung', entityFloodlight: '🔦 Kamera-Scheinwerfer', entityFloodlightMode: '🔦 Scheinwerfer-Modus', entityRecording: '⏺ Kamera-Aufzeichnung',
     houseThemes: { beige: 'Beige', dark: 'Anthrazit', white: 'Weiß', brick: 'Klinker' },
     edCarBrand: '🚙 Automarke (Logo)',
@@ -691,9 +692,10 @@ const DEFAULT_CONFIG = {
   country: 'vn',          // flag + licence plate band (shutter style)
   car_brand: 'toyota',    // rear logo: toyota | seat | vw | none
   car_model: 'VIOS',      // rear badge text ('' = none)
+  car_trim: '',           // trim badge on the right side of the boot ('' = none), e.g. FR
   car_color: '#c8bc98',   // car body colour
   house_theme: 'beige',   // garage house look: beige | dark | white | brick
-  side_door: 'right',     // pedestrian door: right | left
+  side_door: 'right',     // pedestrian door: right | left | none
   entity_vehicle: '',          // camera extras (optional): AI vehicle detection
   entity_animal: '',           //   AI animal detection
   entity_floodlight: '',       //   camera floodlight (light)
@@ -1661,7 +1663,7 @@ ${th.flatRoof ? `<!-- FLAT ROOF with tiled fascia (brick theme) -->
 <line x1="400" y1="162" x2="330" y2="86" stroke="${th.eaveLine}" stroke-width="1.2"/>
 <polygon points="321,86 339,86 343,97 330,105 317,97" fill="${th.gable}" stroke="${th.gutter}" stroke-width="1"/>`}
 <!-- garage door group (moves right when the side door is on the left) -->
-<g transform="translate(${this._config.side_door === 'left' ? 72 : 0},0)">
+<g transform="translate(${this._config.side_door === 'left' ? 72 : this._config.side_door === 'none' ? 59 : 0},0)">
 <!-- MOTOR BOX -->
 <rect x="103" y="212" width="336" height="18" rx="4" fill="#1e2a38" stroke="#2e3a50" stroke-width="0.8"/>
 <rect x="107" y="215" width="328" height="12" rx="2" fill="rgba(0,0,0,0.45)"/>
@@ -1753,8 +1755,14 @@ ${motorDot}${arrowUp}${arrowDown}
     ${carLogoSvg(this._config.car_brand || 'toyota', 271, 272)}
     <!-- MODEL BADGE (car_model) -->
     ${(() => { const m = String(this._config.car_model ?? 'VIOS'); if (!m) return '';
+      // SEAT puts the model name centred below the logo; others on the left of the boot lid
+      if ((this._config.car_brand || 'toyota') === 'seat') {
+        return `<text x="271" y="292" font-size="7.5" fill="#d8d8d8" font-family="Arial" font-style="italic" font-weight="bold" letter-spacing="0.6" text-anchor="middle" stroke="#666" stroke-width="0.4" paint-order="stroke">${m}</text>`;
+      }
       const fs = m.length > 5 ? Math.max(6.5, 10.5 * 5 / m.length) : 10.5;  // long names get smaller to stay on the boot lid
       return `<text x="222" y="275" font-size="${fs.toFixed(1)}" fill="#d8d8d8" font-family="Arial" font-weight="bold" letter-spacing="${m.length > 5 ? 1 : 2}" text-anchor="end" stroke="#666" stroke-width="0.6" paint-order="stroke">${m}</text>`; })()}
+    <!-- TRIM BADGE (car_trim), right side of the boot lid -->
+    ${this._config.car_trim ? `<text x="320" y="276" font-size="10" fill="#e0e0e0" font-family="Arial Black,Arial" font-weight="900" font-style="italic" letter-spacing="0.5" text-anchor="start" stroke="#555" stroke-width="0.5" paint-order="stroke">${String(this._config.car_trim).substring(0, 8)}</text>` : ''}
     <!-- LICENSE PLATE (country) -->
     ${(() => { const c = this._config.country || 'vn'; return plateSvg(c, this._config.plate_line1 || (c === 'vn' ? '99A' : ''), this._config.plate_line2 || (c === 'vn' ? '873.76' : '')); })()}
     <circle cx="239" cy="319" r="1.2" fill="#aaa"/>
@@ -1774,7 +1782,7 @@ ${motorDot}${arrowUp}${arrowDown}
 <g clip-path="url(#haDoorClip)">${slatsSvg}</g>
 </g>
 <!-- PEDESTRIAN DOOR (house_theme, side_door) -->
-<g transform="translate(${this._config.side_door === 'left' ? -345 : 0},0)">
+<g transform="translate(${this._config.side_door === 'left' ? -345 : 0},0)" ${this._config.side_door === 'none' ? 'display="none"' : ''}>
 ${th.archDoor ? `<path d="M446,372 V282 A32,32 0 0 1 510,282 V372 Z" fill="#141516" stroke="${th.mortar}" stroke-width="3"/>
 <g fill="none" stroke="#f0f0ee" stroke-width="1.3">
   <path d="M449,372 V283 A29,29 0 0 1 507,283 V372"/>
@@ -1791,7 +1799,7 @@ ${th.archDoor ? `<path d="M446,372 V282 A32,32 0 0 1 510,282 V372 Z" fill="#1415
 <rect x="448" y="304" width="7" height="18" rx="3" fill="${th.door[4]}"/>`}
 </g>
 <!-- WALL LAMPS -->
-<g transform="translate(${this._config.side_door === 'left' ? 72 : 0},0)">
+<g transform="translate(${this._config.side_door === 'left' ? 72 : this._config.side_door === 'none' ? 59 : 0},0)">
 <rect x="113" y="230" width="18" height="28" rx="3" fill="${th.lamp[0]}" stroke="${th.lamp[1]}" stroke-width="0.8"/>
 <polygon points="113,242 131,242 128,258 116,258" fill="${th.lamp[2]}" stroke="${th.lamp[3]}" stroke-width="0.7"/>
 <rect x="115" y="243" width="12" height="10" rx="1" fill="${glassFill}"/>
@@ -2561,7 +2569,7 @@ class GateCardEditor extends HTMLElement {
       <div class="row">
         <label>${t.edSideDoor||'🚪 Side door'}</label>
         <select class="txt-inp" id="inp-side-door">
-          ${['right', 'left'].map((k) => `<option value="${k}" ${(cfg.side_door||'right')===k?'selected':''}>${(t.sideDoors||{})[k]||k}</option>`).join('')}
+          ${['right', 'left', 'none'].map((k) => `<option value="${k}" ${(cfg.side_door||'right')===k?'selected':''}>${(t.sideDoors||{})[k]||k}</option>`).join('')}
         </select>
       </div>
       <div class="row">
@@ -2574,6 +2582,11 @@ class GateCardEditor extends HTMLElement {
         <label>${t.edCarModel||'🚙 Car model'}</label>
         <input class="txt-inp" type="text" id="inp-car-model"
           placeholder="VIOS" maxlength="14" value="${cfg.car_model ?? 'VIOS'}"/>
+      </div>
+      <div class="row">
+        <label>${t.edCarTrim||'🚙 Trim badge'}</label>
+        <input class="txt-inp" type="text" id="inp-car-trim"
+          placeholder="FR" maxlength="8" value="${cfg.car_trim || ''}"/>
       </div>
       <div class="row">
         <label>${t.edCarColor||'🎨 Car colour'}</label>
@@ -2876,6 +2889,7 @@ class GateCardEditor extends HTMLElement {
     wireTextInput(plate1Inp, 'plate_line1');
     wireTextInput(plate2Inp, 'plate_line2');
     wireTextInput(sr.getElementById('inp-car-model'), 'car_model');
+    wireTextInput(sr.getElementById('inp-car-trim'), 'car_trim');
 
     // country / car brand / car colour
     [['inp-country', 'country'], ['inp-house-theme', 'house_theme'], ['inp-side-door', 'side_door'], ['inp-car-brand', 'car_brand'], ['inp-car-color', 'car_color']].forEach(([id, key]) => {

@@ -17,6 +17,7 @@
  *  🌍 country: flag on the pole + licence plate band (vn, de, at, ch, nl, fr, it, pl, se, hu, cz, gb)
  *  🚙 car_brand: rear logo (toyota, seat, vw, none) · car_model: rear badge text · car_color: body colour
  *  🏠 house_theme: garage house look (beige, dark, white, brick – brick has a flat roof and an arched gate)
+ *  🚪 side_door: pedestrian door left or right of the garage door (default right)
  *  📷 camera extras: entity_vehicle, entity_animal, entity_floodlight, entity_floodlight_mode, entity_recording –
  *     tap the motion/person bar to open a drawer with them
  *  🏠 home_name
@@ -73,7 +74,7 @@ const TRANSLATIONS = {
     edPlate2: '🚗 Biển số xe (dòng 2)',
     edCountry: '🌍 Quốc gia (cờ & biển số)',
     edHouseTheme: '🏠 Kiểu nhà',
-    vehicle: 'Xe', animal: 'Động vật', floodlight: 'Đèn pha', recording: 'Ghi hình', recOn: 'Đang ghi', recOff: 'Tạm dừng', now: 'bây giờ', on: 'BẬT', off: 'TẮT', floodModes: { off: 'tắt', auto: 'tự động', schedule: 'lịch' },
+    vehicle: 'Xe', animal: 'Động vật', floodlight: 'Đèn pha', recording: 'Ghi hình', recOn: 'Đang ghi', recOff: 'Tạm dừng', now: 'bây giờ', edSideDoor: '🚪 Cửa phụ', sideDoors: { left: 'Trái', right: 'Phải' }, on: 'BẬT', off: 'TẮT', floodModes: { off: 'tắt', auto: 'tự động', schedule: 'lịch' },
     entityVehicle: '🚗 Xe (AI)', entityAnimal: '🐾 Động vật (AI)', entityFloodlight: '🔦 Đèn pha camera', entityFloodlightMode: '🔦 Chế độ đèn pha', entityRecording: '⏺ Ghi hình camera',
     houseThemes: { beige: 'Be', dark: 'Tối', white: 'Trắng', brick: 'Gạch' },
     edCarBrand: '🚙 Hãng xe (logo)',
@@ -134,7 +135,7 @@ const TRANSLATIONS = {
     edPlate2: '🚗 License plate (line 2)',
     edCountry: '🌍 Country (flag & plate)',
     edHouseTheme: '🏠 House style',
-    vehicle: 'Vehicle', animal: 'Animal', floodlight: 'Floodlight', recording: 'Recording', recOn: 'Recording', recOff: 'Paused', now: 'now', on: 'ON', off: 'OFF', floodModes: { off: 'off', auto: 'auto', schedule: 'schedule' },
+    vehicle: 'Vehicle', animal: 'Animal', floodlight: 'Floodlight', recording: 'Recording', recOn: 'Recording', recOff: 'Paused', now: 'now', edSideDoor: '🚪 Side door', sideDoors: { left: 'Left', right: 'Right' }, on: 'ON', off: 'OFF', floodModes: { off: 'off', auto: 'auto', schedule: 'schedule' },
     entityVehicle: '🚗 Vehicle detection', entityAnimal: '🐾 Animal detection', entityFloodlight: '🔦 Camera floodlight', entityFloodlightMode: '🔦 Floodlight mode', entityRecording: '⏺ Camera recording',
     houseThemes: { beige: 'Beige', dark: 'Dark', white: 'White', brick: 'Brick' },
     edCarBrand: '🚙 Car brand (logo)',
@@ -195,7 +196,7 @@ const TRANSLATIONS = {
     edPlate2: '🚗 Kennzeichen (Zeile 2)',
     edCountry: '🌍 Land (Fahne & Kennzeichen)',
     edHouseTheme: '🏠 Haus-Stil',
-    vehicle: 'Fahrzeug', animal: 'Tier', floodlight: 'Scheinwerfer', recording: 'Aufzeichnung', recOn: 'Zeichnet auf', recOff: 'Pausiert', now: 'jetzt', on: 'AN', off: 'AUS', floodModes: { off: 'manuell', auto: 'automatisch', schedule: 'Zeitplan' },
+    vehicle: 'Fahrzeug', animal: 'Tier', floodlight: 'Scheinwerfer', recording: 'Aufzeichnung', recOn: 'Zeichnet auf', recOff: 'Pausiert', now: 'jetzt', edSideDoor: '🚪 Pforte', sideDoors: { left: 'Links', right: 'Rechts' }, on: 'AN', off: 'AUS', floodModes: { off: 'manuell', auto: 'automatisch', schedule: 'Zeitplan' },
     entityVehicle: '🚗 Fahrzeug-Erkennung', entityAnimal: '🐾 Tier-Erkennung', entityFloodlight: '🔦 Kamera-Scheinwerfer', entityFloodlightMode: '🔦 Scheinwerfer-Modus', entityRecording: '⏺ Kamera-Aufzeichnung',
     houseThemes: { beige: 'Beige', dark: 'Anthrazit', white: 'Weiß', brick: 'Klinker' },
     edCarBrand: '🚙 Automarke (Logo)',
@@ -692,6 +693,7 @@ const DEFAULT_CONFIG = {
   car_model: 'VIOS',      // rear badge text ('' = none)
   car_color: '#c8bc98',   // car body colour
   house_theme: 'beige',   // garage house look: beige | dark | white | brick
+  side_door: 'right',     // pedestrian door: right | left
   entity_vehicle: '',          // camera extras (optional): AI vehicle detection
   entity_animal: '',           //   AI animal detection
   entity_floodlight: '',       //   camera floodlight (light)
@@ -1658,6 +1660,8 @@ ${th.flatRoof ? `<!-- FLAT ROOF with tiled fascia (brick theme) -->
 <line x1="260" y1="162" x2="330" y2="86" stroke="${th.eaveLine}" stroke-width="1.2"/>
 <line x1="400" y1="162" x2="330" y2="86" stroke="${th.eaveLine}" stroke-width="1.2"/>
 <polygon points="321,86 339,86 343,97 330,105 317,97" fill="${th.gable}" stroke="${th.gutter}" stroke-width="1"/>`}
+<!-- garage door group (moves right when the side door is on the left) -->
+<g transform="translate(${this._config.side_door === 'left' ? 72 : 0},0)">
 <!-- MOTOR BOX -->
 <rect x="103" y="212" width="336" height="18" rx="4" fill="#1e2a38" stroke="#2e3a50" stroke-width="0.8"/>
 <rect x="107" y="215" width="328" height="12" rx="2" fill="rgba(0,0,0,0.45)"/>
@@ -1768,7 +1772,9 @@ ${motorDot}${arrowUp}${arrowDown}
 </g>
 <!-- SHUTTER SLATS -->
 <g clip-path="url(#haDoorClip)">${slatsSvg}</g>
-<!-- PEDESTRIAN DOOR (house_theme) -->
+</g>
+<!-- PEDESTRIAN DOOR (house_theme, side_door) -->
+<g transform="translate(${this._config.side_door === 'left' ? -345 : 0},0)">
 ${th.archDoor ? `<path d="M446,372 V282 A32,32 0 0 1 510,282 V372 Z" fill="#141516" stroke="${th.mortar}" stroke-width="3"/>
 <g fill="none" stroke="#f0f0ee" stroke-width="1.3">
   <path d="M449,372 V283 A29,29 0 0 1 507,283 V372"/>
@@ -1783,7 +1789,9 @@ ${th.archDoor ? `<path d="M446,372 V282 A32,32 0 0 1 510,282 V372 Z" fill="#1415
 <rect x="474" y="264" width="12" height="96" rx="2" fill="${th.door[3]}"/>
 <rect x="490" y="264" width="12" height="96" rx="2" fill="${th.door[3]}"/>
 <rect x="448" y="304" width="7" height="18" rx="3" fill="${th.door[4]}"/>`}
+</g>
 <!-- WALL LAMPS -->
+<g transform="translate(${this._config.side_door === 'left' ? 72 : 0},0)">
 <rect x="113" y="230" width="18" height="28" rx="3" fill="${th.lamp[0]}" stroke="${th.lamp[1]}" stroke-width="0.8"/>
 <polygon points="113,242 131,242 128,258 116,258" fill="${th.lamp[2]}" stroke="${th.lamp[3]}" stroke-width="0.7"/>
 <rect x="115" y="243" width="12" height="10" rx="1" fill="${glassFill}"/>
@@ -1792,6 +1800,7 @@ ${th.archDoor ? `<path d="M446,372 V282 A32,32 0 0 1 510,282 V372 Z" fill="#1415
 <polygon points="411,242 429,242 426,258 414,258" fill="${th.lamp[2]}" stroke="${th.lamp[3]}" stroke-width="0.7"/>
 <rect x="413" y="243" width="12" height="10" rx="1" fill="${glassFill}"/>
 <ellipse cx="420" cy="248" rx="4" ry="3" fill="${bulbFill}"/>
+</g>
 <!-- LOCK BUTTON — right wall beside pedestrian door -->
 ${this._config.entity_gate_lock ? (() => {
   // ON = locked (green, shackle down), OFF = unlocked (red, shackle up)
@@ -2550,6 +2559,12 @@ class GateCardEditor extends HTMLElement {
         </select>
       </div>
       <div class="row">
+        <label>${t.edSideDoor||'🚪 Side door'}</label>
+        <select class="txt-inp" id="inp-side-door">
+          ${['right', 'left'].map((k) => `<option value="${k}" ${(cfg.side_door||'right')===k?'selected':''}>${(t.sideDoors||{})[k]||k}</option>`).join('')}
+        </select>
+      </div>
+      <div class="row">
         <label>${t.edCarBrand||'🚙 Car brand'}</label>
         <select class="txt-inp" id="inp-car-brand">
           ${Object.entries(CAR_BRANDS).map(([k, n]) => `<option value="${k}" ${(cfg.car_brand||'toyota')===k?'selected':''}>${n}</option>`).join('')}
@@ -2863,7 +2878,7 @@ class GateCardEditor extends HTMLElement {
     wireTextInput(sr.getElementById('inp-car-model'), 'car_model');
 
     // country / car brand / car colour
-    [['inp-country', 'country'], ['inp-house-theme', 'house_theme'], ['inp-car-brand', 'car_brand'], ['inp-car-color', 'car_color']].forEach(([id, key]) => {
+    [['inp-country', 'country'], ['inp-house-theme', 'house_theme'], ['inp-side-door', 'side_door'], ['inp-car-brand', 'car_brand'], ['inp-car-color', 'car_color']].forEach(([id, key]) => {
       const el = sr.getElementById(id);
       if (!el) return;
       el.addEventListener('change', () => {

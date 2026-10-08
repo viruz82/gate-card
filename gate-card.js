@@ -136,7 +136,7 @@ const TRANSLATIONS = {
     edPlate2: '🚗 License plate (line 2)',
     edCountry: '🌍 Country (flag & plate)',
     edHouseTheme: '🏠 House style',
-    vehicle: 'Vehicle', animal: 'Animal', floodlight: 'Floodlight', recording: 'Recording', recOn: 'Recording', recOff: 'Paused', now: 'now', edCarTrim: '🚙 Trim badge (e.g. FR)', edSideDoor: '🚪 Side door', sideDoors: { left: 'Left', right: 'Right', none: 'None' }, on: 'ON', off: 'OFF', floodModes: { off: 'off', auto: 'auto', schedule: 'schedule' },
+    vehicle: 'Vehicle', animal: 'Animal', floodlight: 'Floodlight', recording: 'Recording', recOn: 'on', recOff: 'paused', now: 'now', edCarTrim: '🚙 Trim badge (e.g. FR)', edSideDoor: '🚪 Side door', sideDoors: { left: 'Left', right: 'Right', none: 'None' }, on: 'ON', off: 'OFF', floodModes: { off: 'off', auto: 'auto', schedule: 'schedule' },
     entityVehicle: '🚗 Vehicle detection', entityAnimal: '🐾 Animal detection', entityFloodlight: '🔦 Camera floodlight', entityFloodlightMode: '🔦 Floodlight mode', entityRecording: '⏺ Camera recording',
     houseThemes: { beige: 'Beige', dark: 'Dark', white: 'White', brick: 'Brick' },
     edCarBrand: '🚙 Car brand (logo)',
@@ -197,7 +197,7 @@ const TRANSLATIONS = {
     edPlate2: '🚗 Kennzeichen (Zeile 2)',
     edCountry: '🌍 Land (Fahne & Kennzeichen)',
     edHouseTheme: '🏠 Haus-Stil',
-    vehicle: 'Fahrzeug', animal: 'Tier', floodlight: 'Scheinwerfer', recording: 'Aufzeichnung', recOn: 'Zeichnet auf', recOff: 'Pausiert', now: 'jetzt', edCarTrim: '🚙 Ausstattung (z. B. FR)', edSideDoor: '🚪 Pforte', sideDoors: { left: 'Links', right: 'Rechts', none: 'Keine' }, on: 'AN', off: 'AUS', floodModes: { off: 'manuell', auto: 'Auto', schedule: 'Zeitplan' },
+    vehicle: 'Fahrzeug', animal: 'Tier', floodlight: 'Scheinwerfer', recording: 'Aufnahme', recOn: 'läuft', recOff: 'pausiert', now: 'jetzt', edCarTrim: '🚙 Ausstattung (z. B. FR)', edSideDoor: '🚪 Pforte', sideDoors: { left: 'Links', right: 'Rechts', none: 'Keine' }, on: 'AN', off: 'AUS', floodModes: { off: 'manuell', auto: 'Auto', schedule: 'Zeitplan' },
     entityVehicle: '🚗 Fahrzeug-Erkennung', entityAnimal: '🐾 Tier-Erkennung', entityFloodlight: '🔦 Kamera-Scheinwerfer', entityFloodlightMode: '🔦 Scheinwerfer-Modus', entityRecording: '⏺ Kamera-Aufzeichnung',
     houseThemes: { beige: 'Beige', dark: 'Anthrazit', white: 'Weiß', brick: 'Klinker' },
     edCarBrand: '🚙 Automarke (Logo)',
@@ -1056,7 +1056,11 @@ class GateCard extends HTMLElement {
 .sensor-item{display:flex;align-items:center;gap:3px;flex:1;min-width:0;overflow:hidden;}
 .sdiv{width:1px;height:16px;background:rgba(255,255,255,.2);flex-shrink:0;}
 .sensor-row.has-extras{cursor:pointer;}
-.extras-arrow{font-family:monospace;font-size:10px;color:rgba(255,255,255,.55);flex-shrink:0;transition:transform .2s;}
+.extras-arrow{flex-shrink:0;display:inline-flex;align-items:center;justify-content:center;width:22px;height:18px;border-radius:9px;
+  border:1px solid var(--gc-accent);background:color-mix(in srgb, var(--gc-accent) 18%, transparent);color:var(--gc-accent);
+  box-shadow:0 0 6px color-mix(in srgb, var(--gc-accent) 35%, transparent);margin-left:2px;}
+.extras-arrow svg{transition:transform .2s;}
+.extras-arrow.open svg{transform:rotate(180deg);}
 .extras{display:none;flex-direction:column;gap:6px;padding:6px 10px 8px;background:rgba(0,0,0,.35);
   border-top:1px solid rgba(0,255,255,.1);flex-shrink:0;}
 .extras.open{display:flex;}
@@ -1322,7 +1326,7 @@ class GateCard extends HTMLElement {
       <span style="font-family:monospace;font-size:10px;letter-spacing:.5px;color:rgba(255,255,255,.6);white-space:nowrap;">${t.person}</span>
       <span id="f-pt" style="font-family:monospace;font-size:10px;letter-spacing:.5px;color:rgba(255,255,255,.6);white-space:nowrap;overflow:hidden;text-overflow:ellipsis;">—</span>
     </div>
-    ${this._hasExtras() ? `<span class="extras-arrow" id="f-xarrow">${this._extrasOpen ? '▴' : '▾'}</span>` : ''}
+    ${this._hasExtras() ? `<span class="extras-arrow ${this._extrasOpen ? 'open' : ''}" id="f-xarrow" style="--gc-accent:${cfg.accent_color || '#00ffcc'}"><svg viewBox="0 0 10 6" width="10" height="6"><path d="M1 1l4 4 4-4" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>` : ''}
   </div>
   ${this._hasExtras() ? this._extrasHTML() : ''}
   <div class="flip-btn" style="height:${btnH}px;" data-action="flip">
@@ -2219,7 +2223,7 @@ ${rp.svg}
         this._extrasOpen = !this._extrasOpen;
         const sr = this.shadowRoot;
         sr.getElementById('f-extras')?.classList.toggle('open', this._extrasOpen);
-        const arrow = sr.getElementById('f-xarrow'); if (arrow) arrow.textContent = this._extrasOpen ? '▴' : '▾';
+        sr.getElementById('f-xarrow')?.classList.toggle('open', this._extrasOpen);
         sr.querySelector('.card')?.toggleAttribute('data-extras', this._extrasOpen);
         return;
       }
